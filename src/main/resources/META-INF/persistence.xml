@@ -4,6 +4,7 @@
 >
 
     <persistence-unit name="hibernate_demo">
+
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hibernate_demo"/>
@@ -12,13 +13,14 @@
 
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <!-- exemple d'une autre valeur pour ddl : update -->
             <!--
                 update : met à jour la db, garde la persistance.
                 create : à chaque fois, il supprime et repart sur une db vide.
             -->
         </properties>
+
     </persistence-unit>
 
 </persistence>
