@@ -1,0 +1,24 @@
+<persistence
+        xmlns="https://jakarta.ee/xml/ns/persistence"
+        version="3.0"
+>
+
+    <persistence-unit name="hibernate_demo">
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/hibernate_demo"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="Dg3HIJ50__"/>
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl" value="create"/>
+            <!-- exemple d'une autre valeur pour ddl : update -->
+            <!--
+                update : met à jour la db, garde la persistance.
+                create : à chaque fois, il supprime et repart sur une db vide.
+            -->
+        </properties>
+    </persistence-unit>
+
+</persistence>
