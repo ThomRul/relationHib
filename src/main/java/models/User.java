@@ -8,7 +8,7 @@ import lombok.Setter;
 
 // Hibernate via jakarta
 @Entity // Je viens de dire à mon ORM hibernate, écoute quand tu lances, le code, crée user.
-@Table( name="\'user\'")
+@Table(name = "\"user\"")
 
 // Lombok
 @Getter // crée par défaut pour tous les attributs de ma classe, un getter
