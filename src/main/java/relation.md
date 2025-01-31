@@ -98,3 +98,34 @@ public class Person {
 }
 
 ````
+
+## FETCH TYPE
+On va avoir une erreur si on laisse la liste de voiture comme ça
+````java
+Exception in thread "main" org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: models.User.cars: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:634)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:217)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:613)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.read(AbstractPersistentCollection.java:136)
+	at org.hibernate.collection.spi.PersistentBag.iterator(PersistentBag.java:371)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:74)
+	at Main.main(Main.java:20)
+````
+Pourquoi ? --> 
+Par défaut pour les MANY TO ONE - ONE TO MANY
+### LAZY (Paresseux) - C'est le comportement par défaut pour les collections (@OneToMany) :
+````java
+@OneToMany(mappedBy = "user")  // LAZY par défaut
+private List<Car> cars;
+````
+- Plus performant car charge moins de données initialement
+- Les voitures ne sont chargées que lorsque qu'on veut y accéder de façon explicite
+--> causer une LazyInitializationException si vous essayez d'accéder aux voitures alors qu'on est plus dans le contexte d'Hibernate
+### Solution
+````java
+@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+private List<Car> cars;
+````
+- Charge TOUTES les voitures dés qu'on charge le user
+- Évite les `LazyInitializationException`
+- MAIS peut être moins performant car charge plus de données que nécessaire
