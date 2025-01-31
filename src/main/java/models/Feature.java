@@ -19,9 +19,10 @@ public class Feature {
     @Column(name = "name")
     private String name;
 
+    // Côté inverse de la relation
+    @ToString.Exclude
     @ManyToMany(mappedBy = "features")
     private List<Car> cars;
-
 
     public Feature(String name) {
         this.name = name;

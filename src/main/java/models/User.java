@@ -29,6 +29,11 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Car> cars;
 
+    //ONE TO ONE
+    @OneToOne
+    @JoinColumn(name = "licence_id")
+    private Licence license;
+
     public User(String name){
         this.name = name;
         this.cars = new ArrayList<>();

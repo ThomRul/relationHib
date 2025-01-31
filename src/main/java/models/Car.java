@@ -24,12 +24,14 @@ public class Car {
     @JoinColumn( name="user_id")
     private User user;
 
+
     @ManyToMany
     @JoinTable(
-            name = "car_features",
-            joinColumns = @JoinColumn(name ="car_id"),
-            inverseJoinColumns = @JoinColumn(name = "feature_id")
+            name = "car_feature",  // Nom de la table de jointure
+            joinColumns = @JoinColumn(name = "car_id"),  // Clé étrangère vers Car
+            inverseJoinColumns = @JoinColumn(name = "feature_id")  // Clé étrangère vers Feature
     )
+    @ToString.Exclude
     private List<Feature> features;
 
     public Car(String color, User user){
