@@ -23,6 +23,7 @@ public class Main {
         System.out.println(car.getColor());
         System.out.println("CAR BY USER");
         userRepo.findCarsByUserId(user.getId()).forEach(System.out::println);
+        System.out.println("Hello");
 
     }
 }
